@@ -71,10 +71,9 @@ def memoize(obj):
 
 class cryptsy_api(object):
 
-    def __init__(self, api_key, priv_secret_key,  nonce_file):
+    def __init__(self, api_key, priv_secret_key):
         self.api_key = api_key
         self.priv_secret_key = priv_secret_key
-        self.nonce_file = nonce_file
 
     pubapi_url = "http://pubapi.cryptsy.com"
     authapi_url = "https://www.cryptsy.com/api"
@@ -187,9 +186,3 @@ class cryptsy_api(object):
                                    "quantity": quantity,
                                    "price": price})
 
-if __name__ == "__main__":
-    # some testing code
-    api = cryptsy_api()
-    import json
-    #print json.dumps(api.getinfo(),  sort_keys = False, indent = 4)
-    print json.dumps(api.marketdata(),  sort_keys = False, indent = 4)
