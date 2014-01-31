@@ -1,0 +1,30 @@
+* Python Cryptsy API
+
+This is a simple Python Implementation of the [[https://www.cryptsy.com/pages/api][Cryptsy API]]. Both public and private calls are supported, but not all API calls have currently been implemented. All calls return the initiated json parsing results. No additional object transformation is being performed. 
+
+
+* Installation
+
+This is currently not installable via EasyInstall or Pip. Instead, simply download cryptsy.py and put it into your directory
+
+* Usage
+  
+This library requires that you both have a Cryptsy Key and a Sign:
+
+#+BEGIN_QUOTE
+Key — Public API key. An example API key: 5a8808b25e3f59d8818d3fbc0ce993fbb82dcf90 
+
+Sign — ALL POST data (param=val&param1=val1) signed by a secret key according to HMAC-SHA512 method. Your secret key and public keys can be generated from your account settings page. 
+#+END_QUOTE
+
+You can get them when registering on Cryptsy.com
+
+The Python library will automatically take care of the nonce value for you.
+
+#+BEGIN_SRC Python
+import cryptsy
+api_example = cryptsy.cryptsy_api("my-key",  "my-secret")
+print api.marketdata()
+#+END_SRC
+
+
