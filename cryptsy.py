@@ -186,3 +186,21 @@ class cryptsy_api(object):
                                    "quantity": quantity,
                                    "price": price})
 
+    @memoize
+    def mytransactions(self):
+        """
+        Outputs: Array of Deposits and Withdrawals on your account 
+        
+        currency	Name of currency account
+        timestamp	The timestamp the activity posted
+        datetime	The datetime the activity posted
+        timezone	Server timezone
+        type	Type of activity. (Deposit / Withdrawal)
+        address	Address to which the deposit posted or Withdrawal was sent
+        amount	Amount of transaction (Not including any fees)
+        fee	Fee (If any) Charged for this Transaction (Generally only on Withdrawals)
+        trxid	Network Transaction ID (If available)
+        """
+        return self.auth_api_call({"method": "mytransactions",})
+
+
