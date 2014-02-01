@@ -160,11 +160,6 @@ class cryptsy_api(object):
                                    "marketid": marketid})
 
     @memoize
-    def markettrades(self, marketid):
-        return self.auth_api_call({"method": "marketorders",
-                                   "marketid": marketid})
-
-    @memoize
     def createorder(self, marketid, ordertype, quantity, price):
         """
           marketid: -> integer market id
@@ -202,5 +197,12 @@ class cryptsy_api(object):
         trxid	Network Transaction ID (If available)
         """
         return self.auth_api_call({"method": "mytransactions",})
+
+    @memoize
+    def mytrades(self, marketid, limit = 200):
+        return self.auth_api_call({"method": "calculatefees",
+                                   "marketid": marketid,
+                                   "limit": limit})
+        
 
 
