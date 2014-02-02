@@ -200,9 +200,7 @@ class cryptsy_api(object):
 
     @memoize
     def mytrades(self, marketid, limit = 200):
-        return self.auth_api_call({"method": "calculatefees",
+        return self.auth_api_call({"method": "mytrades",
                                    "marketid": marketid,
                                    "limit": limit})
-        
-
 
