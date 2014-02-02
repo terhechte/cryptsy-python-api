@@ -200,7 +200,62 @@ class cryptsy_api(object):
 
     @memoize
     def mytrades(self, marketid, limit = 200):
+        """
+        Inputs:
+
+        marketid	Market ID for which you are querying
+        limit	(optional) Limit the number of results. Default: 200
+
+
+        Outputs: Array your Trades for this Market, in Date Decending Order 
+
+        tradeid	An integer identifier for this trade
+        tradetype	Type of trade (Buy/Sell)
+        datetime	Server datetime trade occurred
+        tradeprice	The price the trade occurred at
+        quantity	Quantity traded
+        total	Total value of trade (tradeprice * quantity) - Does not include fees
+        fee	Fee Charged for this Trade
+        initiate_ordertype	The type of order which initiated this trade
+        order_id	Original order id this trade was executed against
+        """
         return self.auth_api_call({"method": "mytrades",
                                    "marketid": marketid,
                                    "limit": limit})
+
+
+    @memoize
+    def allmytrades(self):
+        """
+        Outputs: Array your Trades for all Markets, in Date Decending Order 
+
+        tradeid	An integer identifier for this trade
+        tradetype	Type of trade (Buy/Sell)
+        datetime	Server datetime trade occurred
+        marketid	The market in which the trade occurred
+        tradeprice	The price the trade occurred at
+        quantity	Quantity traded
+        total	Total value of trade (tradeprice * quantity) - Does not include fees
+        fee	Fee Charged for this Trade
+        initiate_ordertype	The type of order which initiated this trade
+        order_id	Original order id this trade was executed against
+        """
+        return self.auth_api_call({"method": "allmytrades"})
+
+    @memoize
+    def myorders(self, marketid, limit = 200):
+        """
+        Outputs: Array of your orders for this market listing your current open sell and buy orders. 
+
+        orderid	Order ID for this order
+        created	Datetime the order was created
+        ordertype	Type of order (Buy/Sell)
+        price	The price per unit for this order
+        quantity	Quantity remaining for this order
+        total	Total value of order (price * quantity)
+        orig_quantity	Original Total Order Quantity
+        """
+        return self.auth_api_call({"method": "myorders",
+                                   "marketid": marketid})
+        
 
