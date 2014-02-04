@@ -257,5 +257,44 @@ class cryptsy_api(object):
         """
         return self.auth_api_call({"method": "myorders",
                                    "marketid": marketid})
+
+    @memoize
+    def depth(self, marketid):
+        """
+        Outputs: Array of buy and sell orders on the market representing market depth. 
+
+        Output Format is:
+        array(
+          'sell'=>array(
+            array(price,quantity), 
+            array(price,quantity),
+            ....
+          ), 
+          'buy'=>array(
+            array(price,quantity), 
+            array(price,quantity),
+            ....
+          )
+        )
+        """
+        return self.auth_api_call({"method": "depth",
+                                   "marketid": marketid})
+
+    def allmyorders(self):
+        """
+        Outputs: Array of all open orders for your account. 
+
+        orderid	Order ID for this order
+        marketid	The Market ID this order was created for
+        created	Datetime the order was created
+        ordertype	Type of order (Buy/Sell)
+        price	The price per unit for this order
+        quantity	Quantity remaining for this order
+        total	Total value of order (price * quantity)
+        orig_quantity	Original Total Order Quantity
+        """
+        return self.auth_api_call({"method": "allmyorders"})
+
+
         
 
